@@ -1,13 +1,15 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <unistd.h>
 
 /**
- * main - Entry point
- * Return: Always 1 (Success)
+ * main - Main Function to write a quote
+ * Return: Return 1 if successful
  */
+
 int main(void)
 {
-	fwrite('and that piece of art is useful" - Dora Korpar, 2015-10-19', stderr);
+	char q[] = "and that piece of art is useful\" - Dora Korpar, 2015-10-19\n";
+
+	write(2, q, 59);
 	return (1);
 }
