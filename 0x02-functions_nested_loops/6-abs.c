@@ -4,9 +4,9 @@
  * @n: integer input
  * Return: absolute value of n
  */
-int _abs(int n)
+int _abs (int n)
 {
-	if(n < 0)
+	if (n < 0)
 	{
 		return (n * -1);
 	}
