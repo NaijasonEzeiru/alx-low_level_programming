@@ -1,44 +1,24 @@
-#include "lists.h"
-
-/**
-<<<<<<< HEAD
- * free_list - frees a list_t list.
- * @head: pointer to the list.
- **/
-void free_list(list_t *head)
-{
-	list_t *actual_node;
-	list_t *next_node;
-
-	if (head)
-	{
-		actual_node = head;
-		next_node = head->next;
-		while (next_node)
-		{
-			free(actual_node->str);
-			free(actual_node);
-			actual_node = next_node;
-			next_node = next_node->next;
-		}
-		free(actual_node->str);
-		free(actual_node);
-	}
-=======
- * free_list - frees a list
- * @head: head of the linked list.
- * Return: no return.
+/*
+ * File: 4-free_list.c
+ * Auth: Brennan D Baraban
  */
 
+#include "lists.h"
+#include <stdlib.h>
+
+/**
+ * free_list - Frees a list_t list.
+ * @head: A pointer to the list_t list.
+ */
 void free_list(list_t *head)
 {
-    list_t *current;
+	list_t *tmp;
 
-    while ((current = head) != NULL)
-    {
-        head = head->next;
-        free(current->str);
-        free(current);
-    }
->>>>>>> parent of 87d31a3... corrections
+	while (head)
+	{
+		tmp = head->next;
+		free(head->str);
+		free(head);
+		head = tmp;
+	}
 }
