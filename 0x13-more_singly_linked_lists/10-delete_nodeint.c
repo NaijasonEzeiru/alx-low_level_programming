@@ -1,37 +1,40 @@
+#include <stdlib.h>
 #include "lists.h"
 
 /**
- * delete_nodeint_at_index - deletes the node at the index of listint.
- * @head: data type pointer the head/next node
- * @index: data type unsigned int index
- * Return: 1 if succed and -1 if fail
+ * delete_nodeint_at_index - Delete a node at a given index in a list
+ * @head: Pointer to a pointer to the start of the list
+ * @index: The location in the list of the node to delete
+ *
+ * Return: 1 on success, -1 on failure
  */
 int delete_nodeint_at_index(listint_t **head, unsigned int index)
 {
-	unsigned int counter = 0;
-	listint_t *tmp_node = *head;
-	listint_t *idx_node;
+	listint_t *current;
+	listint_t *previous;
+	unsigned int count;
 
-	if (tmp_node && (!index))
+	if (head == NULL)
+		return (-1);
+	count = 0;
+	current = *head;
+	if (*head == NULL)
+		return (-1);
+	if (index == 0)
 	{
-		*head = tmp_node->next;
-		free(tmp_node);
+		*head = current->next;
+		free(current);
 		return (1);
 	}
-	while (tmp_node)
+	while (count != index)
 	{
-		if (counter + 1 == index)
-		{
-			idx_node = tmp_node->next;
-			if (idx_node)
-			{
-				tmp_node->next = idx_node->next;
-				free(idx_node);
-				return (1);
-			}
-		}
-		tmp_node = tmp_node->next;
-		counter++;
+		previous = current;
+		current = current->next;
+		if (current == NULL)
+			return (-1);
+		count++;
 	}
-	return (-1);
+	previous->next = current->next;
+	free(current);
+	return (1);
 }
